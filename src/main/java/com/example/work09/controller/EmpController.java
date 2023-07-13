@@ -55,8 +55,7 @@ public class EmpController {
      */
     @RequestMapping("/del/{id}")
     public Result deleteById(@PathVariable String id) {
-        Integer id0 = Integer.valueOf(id);
-        return empService.removeById(id0);
+        return empService.removeById(id);
     }
 
 

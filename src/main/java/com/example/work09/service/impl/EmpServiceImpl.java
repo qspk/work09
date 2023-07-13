@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -42,11 +41,12 @@ public class EmpServiceImpl implements EmpService {
 
     /**
      * 删除一个员工
-     * @param id id
+     * @param id0 id
      * @return Result
      */
     @Override
-    public Result removeById(Integer id) {
+    public Result removeById(String id0) {
+        Integer id = Integer.valueOf(id0);
         if (!isExist(id)) {
             return Result.error("查无员工信息");
         }
@@ -78,8 +78,8 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public Result queryList() {
         List<Emp> list = empMapper.list();
-        list.stream().peek(emp -> emp.setPassword("******")).collect(Collectors.toList());
-        return Result.success(list);
+        Stream<Emp> newList = list.stream().peek(emp -> emp.setPassword("******"));
+        return Result.success(newList);
     }
 
     /**
@@ -99,18 +99,13 @@ public class EmpServiceImpl implements EmpService {
     }
 
     /**
-     * 判断员工存不存在
+     * 判断 username 是否存在
      * @param username 用户名
      * @return Result
      */
     boolean isExist(String username) {
-        List<Emp> empList = empMapper.list();
-        for (Emp emp : empList) {
-            if (username.equals(emp.getUsername())) {
-                return true;
-            }
-        }
-        return false;
+        int count = empMapper.selectCountByUsername(username);
+        return count != 0;
     }
 
     /**
@@ -119,12 +114,7 @@ public class EmpServiceImpl implements EmpService {
      * @return Result
      */
     boolean isExist(Integer id) {
-        List<Emp> empList = empMapper.list();
-        for (Emp emp : empList) {
-            if (id.equals(emp.getId())) {
-                return true;
-            }
-        }
-        return false;
+        int count = empMapper.selectCountById(id);
+        return count != 0;
     }
 }

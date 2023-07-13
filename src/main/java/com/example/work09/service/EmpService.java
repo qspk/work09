@@ -6,7 +6,7 @@ import com.example.work09.utils.Result;
 public interface EmpService {
     Result saveOne(Emp emp);
 
-    Result removeById(Integer id);
+    Result removeById(String id);
 
     Result updateById(Emp emp);
 

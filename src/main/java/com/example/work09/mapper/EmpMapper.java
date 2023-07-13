@@ -36,10 +36,29 @@ public interface EmpMapper {
     void deleteById(Integer id);
 
     /**
-     * @param emp
+     * 更新员工信息
+     * @param emp emp
      */
     void updateById(Emp emp);
 
     @Select("select * from emp where id = #{id} ")
     Emp getEmpById(Integer id);
+
+    /**
+     * 查询username是否存在
+     * @param username username
+     * @return 指定username的数量
+     */
+    @Select("select count(*) from emp where username = #{username} ")
+    int selectCountByUsername(String username);
+
+
+    /**
+     * 查询 id 是否存在
+     *
+     * @param id id
+     * @return 指定 id 的数量
+     */
+    @Select("select count(*) from emp where id = #{id} ")
+    int selectCountById(Integer id);
 }
