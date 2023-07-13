@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.work09.mapper.EmpMapper">
+    <insert id="savaOne">
+        insert into emp (username, password, name, gender, image, job, entry_date, dept_id, create_time, update_time)
+        VALUES (#{username}, #{password}, #{name}, #{gender}, #{image}, #{job}, #{entryDate}, #{deptId}, #{createTime},
+        #{updateTime})
+    </insert>
+</mapper>
