@@ -22,4 +22,21 @@ public class Emp {
     private Integer deptId;
     private LocalDateTime createTime;//LocalDateTime类型对应数据表中的datetime类型
     private LocalDateTime updateTime;
+
+    public Emp codePassword() {
+        Emp emp = new Emp();
+        emp.id = this.id;
+        emp.username = this.username;
+        emp.password = "******";
+        emp.name = this.name;
+        emp.gender = this.gender;
+        emp.image = this.image;
+        emp.job = this.job;
+        emp.entryDate = this.entryDate;
+        emp.deptId = this.deptId;
+        emp.createTime = this.createTime;
+        emp.updateTime = this.updateTime;
+
+        return emp;
+    }
 }
