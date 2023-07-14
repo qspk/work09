@@ -7,6 +7,10 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+
+/**
+ * @author Administrator
+ */
 @Mapper
 public interface EmpMapper {
 
@@ -23,7 +27,7 @@ public interface EmpMapper {
      *
      * @return 员工信息集合
      */
-    @Select("select * from emp")
+//    @Select("select * from emp")
     List<Emp> list();
 
 
@@ -41,7 +45,7 @@ public interface EmpMapper {
      */
     void updateById(Emp emp);
 
-    @Select("select * from emp where id = #{id} ")
+//    @Select("select * from emp where id = #{id} ")
     Emp getEmpById(Integer id);
 
     /**

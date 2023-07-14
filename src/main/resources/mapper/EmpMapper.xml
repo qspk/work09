@@ -3,6 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.work09.mapper.EmpMapper">
+    <sql id="selectAll">
+        select id,
+               username,
+               password,
+               name,
+               gender,
+               image,
+               job,
+               entry_date,
+               dept_id,
+               create_time,
+               update_time
+        from emp
+    </sql>
+
+
+
     <insert id="savaOne">
         insert into emp (username, password, name, gender, image, job, entry_date, dept_id, create_time, update_time)
         VALUES (#{username}, #{password}, #{name}, #{gender}, #{image}, #{job}, #{entryDate}, #{deptId}, #{createTime},
@@ -40,6 +57,14 @@
         where id = #{id}
     </update>
 
+    <select id="list" resultType="com.example.work09.pojo.Emp">
+        <include refid="selectAll">
+        </include>
+    </select>
 
-
+    <select id="getEmpById" resultType="com.example.work09.pojo.Emp">
+        <include refid="selectAll">
+        </include>
+        where id = #{id}
+    </select>
 </mapper>
